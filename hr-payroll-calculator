@@ -1,0 +1,40 @@
+# HR Payroll and Bonus Calculator
+# This program calculates the net salary and performance bonuses for company employees.
+
+print("=== COMPANY HR PAYROLL SYSTEM ===")
+
+# 1. Getting input from user
+employee_name = input("Enter employee name and surname: ")
+base_salary = float(input("Enter base salary (TL): "))
+performance_score = int(input("Enter performance score (Between 1 and 100): "))
+# Vergi oranını kullanıcıdan yüzde olarak alıp ondalığa çeviriyoruz (Örn: 15 girerse 0.15 olur)
+tax_rate = float(input("Enter current tax rate (e.g., 15 for 15%): ")) / 100
+
+# 2. Calculating the bonus using IF-ELSE
+bonus_rate = 0.0
+
+if performance_score >= 90:
+    bonus_rate = 0.20  # %20 Prim
+    print("Excellent performance! Employee earned a 20% bonus.")
+elif performance_score >= 70:
+    bonus_rate = 0.10  # %10 Prim
+    print("Good performance! Employee earned a 10% bonus.")
+else:
+    bonus_rate = 0.0
+    print("Standard performance. No bonus earned.")
+
+# 3. Calculations
+bonus_amount = base_salary * bonus_rate
+total_gross_salary = base_salary + bonus_amount
+tax_amount = total_gross_salary * tax_rate  # Sabit 0.15 yerine dinamik tax_rate kullandık!
+net_salary = total_gross_salary - tax_amount
+
+# 4. Displaying the Payroll Results
+print("\n--- PAYROLL SLIP ---")
+print(f"Employee: {employee_name}")
+print(f"Base Salary: {base_salary:.2f} TL")
+print(f"Bonus Earned: {bonus_amount:.2f} TL")
+print(f"Total Gross Salary: {total_gross_salary:.2f} TL")
+print(f"Tax Deduction ({tax_rate*100:.0f}%): {tax_amount:.2f} TL") # Yüzdeyi de dinamik gösteriyoruz
+print(f"Net Salary to Pay: {net_salary:.2f} TL")
+print("--------------------")
